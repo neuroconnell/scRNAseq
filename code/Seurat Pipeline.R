@@ -36,5 +36,5 @@ FeaturePlot(Example_Seurat_Object, features = c("nFeature_RNA"))
 VlnPlot(Example_Seurat_Object, features = "nFeature_RNA")
 
 ### Visualize violin plot or feature plot of cluster-specific expression for known serotonergic markers
-VlnPlot(Example_Seurat_Object, features=c("Fev","Tph2","En1","Meis2","Penk","nFeature_RNA"), pt.size=0.1, cols=cluster_colors)
-FeaturePlot(Example_Seurat_Object, features= c("Epha6","Tph2"))
+VlnPlot(Example_Seurat_Object, features=c("Fev","Lmx1b","Tph2","Slc6a4"), pt.size=0.1, cols=cluster_colors)
+FeaturePlot(Example_Seurat_Object, features= c("Fev","Lmx1b","Tph2","Slc6a4"))
