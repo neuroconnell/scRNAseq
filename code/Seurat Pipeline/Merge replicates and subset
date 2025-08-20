@@ -1,0 +1,48 @@
+### Assuming the user has read in data, created object, and processed object for all biological replicates and conditions
+### In this example, we suppose there are 3 biological replicates, 3 batches, and 2 treatments
+
+#Merge objects
+  merged_object = merge(x=c(example_treatment_object1, example_treatment_object2, example_treatmentobject3), y =c(example_control_object1, example_control_object2, example_control object3))
+
+#Normalize, scale, find variable features, find PCs, neighbors, and clusters
+  merged_object <- ScaleData(merged_object)
+  merged_object <- RunPCA(merged_object, features = VariableFeatures(object = merged_object))
+  merged_object <- FindNeighbors(merged_object, dims = c(1:50))
+  merged_object <- FindClusters(merged_object, resolution = 1.0)
+
+#Run UMAP 
+  merged_object <- RunUMAP(merged_object, dims = c(1:50))
+
+#Define new cluster colors, where "n" is number of clusters
+  cluster_colors = colorRampPalette(c("#FF0000", "#00A08A", "#F2AD00", "#F98400", "#EBCC2A","#5BBCD6","#046C9A"))(n)
+
+#Visualize object
+  DimPlot(merged_object, reduction = 'umap'm cols = cluster_colors, label = T, repel = T)
+
+#Inspect clusters for nFeature_RNA and serotonergic transcripts 
+  FeaturePlot(merged_object, features = c("Fev","Tph2","Slc6a4", "nFeature_RNA"), label =T)
+  VlnPlot(merged_object, features = c("Fev","Tph2","Slc6a4", "nFeature_RNA"))
+
+### Next we will subset clusters containing cells that are not serotonergic (e.g. low Fev and low Tph2 or high glial/endothelial) or low nFeature_RNA
+#Define cluster identities
+  all_idents <- unique(Idents(merged_object)
+
+#Define inverse set (all identities not in list) where "...c(1,2,3...n)" are non-serotonergic or low nFeature_RNA clusters)
+  inverse_idents <- setdiff(all_idents, c(1,2,3,n))
+
+#Create a "discard_object" of removed cells if one intends to examine glial contamination, for example, then subset merged_object to yield reserved cells
+#Here, "filtered_merged_object" contains sorted serotonergic neurons, filtered for serotonin-specific transcripts
+  discard_object <- subset(merged_object, idents = inverse_idents)
+  filtered_merged_object <- subset(merged_object, idents = c(1,2,3,n))
+
+#Normalize, scale, find variable features, find PCs, neighbors, and clusters
+  filtered_merged_object <- ScaleData(filtered_merged_object)
+  filtered_merged_object <- RunPCA(filtered_merged_object, features = VariableFeatures(object = filtered_merged_object))
+  filtered_merged_object <- FindNeighbors(filtered_merged_object, dims = c(1:50))
+  filtered_merged_object <- FindClusters(filtered_merged_object, resolution = 1.0)
+
+#Run UMAP 
+  filtered_merged_object <- RunUMAP(filtered_merged_object, dims = c(1:50))
+
+#Visualize object
+  DimPlot(filtered_merged_object, reduction = 'umap'm cols = cluster_colors, label = T, repel = T)
