@@ -46,3 +46,4 @@
 
 #Visualize object
   DimPlot(filtered_merged_object, reduction = 'umap'm cols = cluster_colors, label = T, repel = T)
+
