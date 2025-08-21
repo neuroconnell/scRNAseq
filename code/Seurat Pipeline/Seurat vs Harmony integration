@@ -1,0 +1,11 @@
+### Here, I provide examples for both Harmony and Seurat integration, briefly discussing the functionality of both approaches.
+
+#Seurat integration: 
+ifnb <- IntegrateLayers(object = ifnb, method = CCAIntegration, orig.reduction = "pca", new.reduction = "integrated.cca",
+    verbose = FALSE)
+
+# re-join layers after integration
+ifnb[["RNA"]] <- JoinLayers(ifnb[["RNA"]])
+
+ifnb <- FindNeighbors(ifnb, reduction = "integrated.cca", dims = 1:30)
+ifnb <- FindClusters(ifnb, resolution = 1)
