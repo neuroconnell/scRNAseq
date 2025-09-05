@@ -1,5 +1,5 @@
 # R code for analysis of scRNA-sequencing data
-A library of R and Python code, leveraging modern single-cell analyses methods to predict gene expression of sorted serotonergic neurons. Repositories include example applications of native Seurat, alternative and advanced analysis pipelines for modeling and predicting differential gene expression. 
+A library of R and Python code, leveraging modern single-cell analyses methods to predict gene expression of sorted serotonergic neurons. Repositories include example applications of native Seurat, alternative and advanced analysis pipelines for modeling and predicting differential gene expression and chromatin accessibility. 
 
 R Repositories:
   1. General Seurat analysis pipeline
