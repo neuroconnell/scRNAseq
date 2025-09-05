@@ -5,3 +5,4 @@ R Repositories:
   1. General Seurat analysis pipeline
   2. NEBULA (Negative binomial modeling) for DEG prediction (frequentist)
   3. ParetoTI (Task inference for identifying archetypal gene expression programs)
+  4. Signac (Analysis of chromatin accessibility, ATAC)
